@@ -1,0 +1,15 @@
+{
+  "name": "azure-devops-rest-api",
+  "version": "1.0.0",
+  "description": "A demonstration project showing how to use Newman and Azure DevOps to automate Postman calls",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ben Dalby",
+  "license": "MIT",
+  "dependencies": {
+    "newman": "^5.1.0",
+    "newman-reporter-junitfull": "^1.1.1"
+  }
+}

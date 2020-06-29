@@ -1,0 +1,389 @@
+{
+	"info": {
+		"_postman_id": "0c799521-8c28-4c09-af96-fffc7833efc8",
+		"name": "HSBC",
+		"description": "Test calls against HSBC Open Banking sandbox",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "01-All-Branches",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "36bd5e40-2239-4a4f-afc2-a5dea1d51275",
+						"exec": [
+							"var requestName = pm.info.requestName;\r",
+							"\r",
+							"pm.test(requestName + \": HTTP Status 200\",function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(requestName + \": Reponse time < less than 1 second\",function(){\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"\r",
+							"pm.test(requestName + \": Over 600 branches returned\",function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.meta.TotalResults).to.be.above(600);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{hostname}}/open-banking/v2.2/branches",
+					"protocol": "https",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"open-banking",
+						"v2.2",
+						"branches"
+					]
+				},
+				"description": "GET all branches"
+			},
+			"response": []
+		},
+		{
+			"name": "02-Local-Branch-By-PostCode",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f59a7d3c-2fd4-4640-accc-a88f90a6ed05",
+						"exec": [
+							"var requestName = pm.info.requestName;\r",
+							"\r",
+							"pm.test(requestName + \": HTTP Status 200\",function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(requestName + \": Reponse time < less than 1 second\",function(){\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"\r",
+							"pm.test(requestName + \": branch at postcode BH24 1XX is Ringwood\",function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data[0].Brand[0].Branch[0].Name).to.eql(\"Ringwood\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{hostname}}/x-open-banking/v2.2/branches/postcode/bh241xx",
+					"protocol": "https",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"x-open-banking",
+						"v2.2",
+						"branches",
+						"postcode",
+						"bh241xx"
+					]
+				},
+				"description": "GET all branches"
+			},
+			"response": []
+		},
+		{
+			"name": "03-Local-Branch-By-Town",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5dfaf8f4-801b-4b2e-bb51-aad81c696e3c",
+						"exec": [
+							"var requestName = pm.info.requestName;\r",
+							"\r",
+							"pm.test(requestName + \": HTTP Status 200\",function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(requestName + \": Reponse time < less than 1 second\",function(){\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"\r",
+							"pm.test(requestName + \": branch in Ringwood has sort code 403821\",function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data[0].Brand[0].Branch[0].Identification).to.eql(\"403821\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{hostname}}/x-open-banking/v2.2/branches/country/GB/town/ringwood",
+					"protocol": "https",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"x-open-banking",
+						"v2.2",
+						"branches",
+						"country",
+						"GB",
+						"town",
+						"ringwood"
+					]
+				},
+				"description": "GET all branches"
+			},
+			"response": []
+		},
+		{
+			"name": "04-Branch-By-SortCode",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3f2e9bc7-e7b5-4ea3-864d-d39d8a579018",
+						"exec": [
+							"var requestName = pm.info.requestName;\r",
+							"\r",
+							"pm.test(requestName + \": HTTP Status 200\",function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(requestName + \": Reponse time < less than 1 second\",function(){\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{hostname}}/x-open-banking/v2.2/branches/sortcode/403821",
+					"protocol": "https",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"x-open-banking",
+						"v2.2",
+						"branches",
+						"sortcode",
+						"403821"
+					]
+				},
+				"description": "GET all branches"
+			},
+			"response": []
+		},
+		{
+			"name": "05-Branch-By-Longitude-Latitude",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "86fe5eca-e9b3-4760-a750-2737a09cf7b2",
+						"exec": [
+							"var requestName = pm.info.requestName;\r",
+							"\r",
+							"pm.test(requestName + \": HTTP Status 200\",function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(requestName + \": Reponse time < less than 1 second\",function(){\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"\r",
+							"pm.test(requestName + \": More than 6 branches near London head office\",function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.meta.TotalResults).to.be.above(6);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{hostname}}/x-open-banking/v2.2/branches/geo-location/lat/51.517857/long/-0.106373?radius=1",
+					"protocol": "https",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"x-open-banking",
+						"v2.2",
+						"branches",
+						"geo-location",
+						"lat",
+						"51.517857",
+						"long",
+						"-0.106373"
+					],
+					"query": [
+						{
+							"key": "radius",
+							"value": "1"
+						}
+					]
+				},
+				"description": "GET all branches"
+			},
+			"response": []
+		},
+		{
+			"name": "06-Branch-By-Bad-Sort-Code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1a2fd7d5-f8d6-4aca-8da2-fe23d94ad2d3",
+						"exec": [
+							"var requestName = pm.info.requestName;\r",
+							"\r",
+							"pm.test(requestName + \": HTTP Status 200\",function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(requestName + \": Reponse time < less than 1 second\",function(){\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"\r",
+							"pm.test(requestName + \": Zero results for bad sort code\",function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.meta.TotalResults).to.eql(0);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{hostname}}/x-open-banking/v2.2/branches/sortcode/123456",
+					"protocol": "https",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"x-open-banking",
+						"v2.2",
+						"branches",
+						"sortcode",
+						"123456"
+					]
+				},
+				"description": "GET all branches"
+			},
+			"response": []
+		},
+		{
+			"name": "07-Branch-By-Longitude-Latitude-Lizard-Point",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "50905a64-2994-4125-8795-ca7f19591218",
+						"exec": [
+							"var requestName = pm.info.requestName;\r",
+							"\r",
+							"pm.test(requestName + \": HTTP Status 200\",function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(requestName + \": Reponse time < less than 1 second\",function(){\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"\r",
+							"pm.test(requestName + \": No branches near Lizard Point\",function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.meta.TotalResults).to.eql(0);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{hostname}}/x-open-banking/v2.2/branches/geo-location/lat/49.961282/long/-5.206555?radius=1",
+					"protocol": "https",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"x-open-banking",
+						"v2.2",
+						"branches",
+						"geo-location",
+						"lat",
+						"49.961282",
+						"long",
+						"-5.206555"
+					],
+					"query": [
+						{
+							"key": "radius",
+							"value": "1"
+						}
+					]
+				},
+				"description": "GET all branches"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "19276e34-f66c-4b8b-8416-8cc6399913be",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "b5058944-e68f-4511-9149-47c9074cd14d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "85cbf9d2-5133-4d08-a949-40ceaf89e306",
+			"key": "hostname",
+			"value": "api.hsbc.com"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
