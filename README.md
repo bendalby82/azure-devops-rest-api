@@ -45,7 +45,7 @@ We're going to automate our tests using a 'classic' release pipeline. In theory,
 4. Add a new task of type 'npm', and configure as shown below (you can inspect our YAML [here](https://github.com/bendalby82/azure-devops-rest-api/blob/master/azure/YAML-01-NPM-Step.yaml)):  
 ![Set up npm](https://github.com/bendalby82/azure-devops-rest-api/blob/master/images/13-Add-NPM-Command.png)  
 
-5. Add a new task of type 'Command line', and configure as shown below (again, our YAML is [here](https://github.com/bendalby82/azure-devops-rest-api/blob/master/azure/YAML-02-Command-Step.yaml)):  
+5. Add a new task of type 'Command line', and configure as shown below (again, our YAML is [here](https://github.com/bendalby82/azure-devops-rest-api/blob/master/azure/YAML-02-Command-Step.yaml)). Note that we have to use the local path to newman, since Microsoft understandably do not allow us to install it globally. We also set the `--suppress-exit-code` flag because we do not want the pipeline as a whole to fail if an individual test case fails:  
 ![Calling newman](https://github.com/bendalby82/azure-devops-rest-api/blob/master/images/14-Add-Newman-Command.png)
 
 6. Add a new task of type 'Publish Test Results', and configure as shown below (our YAML is [here](https://github.com/bendalby82/azure-devops-rest-api/blob/master/azure/YAML-03-Publish-Test-Results-Step.yaml)):  
@@ -70,3 +70,8 @@ We're going to automate our tests using a 'classic' release pipeline. In theory,
 ## Credits
 This post builds on work by Alee, which was written up on Medium:  
 https://medium.com/younited-tech-blog/integrate-automated-test-in-azure-devops-using-the-postman-api-288f5566bf11
+
+## Next Steps
+1. We'd like to convert the Azure pipeline to YAML format.
+2. We'd like to explore Postman's API Monitors feature.
+
