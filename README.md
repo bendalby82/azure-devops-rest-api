@@ -25,7 +25,7 @@ We're going to do the following:
 
 ## Write some tests against them
 (Again, you can skip doing any work here by just importing our [completed collection](https://github.com/bendalby82/azure-devops-rest-api/blob/master/postman/HSBC.postman_collection.json))
-1. Postman has excellent documentation on how to write tests [here](https://github.com/bendalby82/azure-devops-rest-api/blob/master/images/02-Basic-Requests-Are-All-Green.png) - but we want a nice mixture of performance tests, status tests and data tests. Note the use of the `pm.info.requestName` property, which will make our tests easier to read further down the line:
+1. Postman has excellent documentation on how to write tests [here](https://learning.postman.com/docs/postman/scripts/test-scripts/) - but we want a nice mixture of performance tests, status tests and data tests. Note the use of the `pm.info.requestName` property, which will make our tests easier to read further down the line:
 ![JavaScript tests](https://github.com/bendalby82/azure-devops-rest-api/blob/master/images/03-Write-Some-Test-Cases-With-Data-Check.png)  
 
 2. Make sure all of our requests have at least some tests against them:  
