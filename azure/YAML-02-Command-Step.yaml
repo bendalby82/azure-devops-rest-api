@@ -1,0 +1,3 @@
+steps:
+- script: '$(System.DefaultWorkingDirectory)/_Azure-DevOps-REST-API/azure/node_modules/.bin/newman run $(System.DefaultWorkingDirectory)/_Azure-DevOps-REST-API/postman/HSBC.postman_collection.json --reporters cli,junit --reporter-junit-export $(System.DefaultWorkingDirectory)/_Azure-DevOps-REST-API/JUnitReport.xml --suppress-exit-code'
+  displayName: '2/3 run newman'

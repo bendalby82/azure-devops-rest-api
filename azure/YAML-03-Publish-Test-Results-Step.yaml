@@ -1,0 +1,6 @@
+steps:
+- task: PublishTestResults@2
+  displayName: '3/3 Publish Test Results'
+  inputs:
+    testResultsFiles: JUnitReport.xml
+    searchFolder: '$(System.DefaultWorkingDirectory)/_Azure-DevOps-REST-API'

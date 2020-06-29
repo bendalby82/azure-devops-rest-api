@@ -1,0 +1,6 @@
+steps:
+- task: Npm@1
+  displayName: '1/3 npm install newman tools'
+  inputs:
+    workingDir: '$(System.DefaultWorkingDirectory)/_Azure-DevOps-REST-API/azure'
+    verbose: false
