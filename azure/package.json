@@ -9,7 +9,7 @@
   "author": "Ben Dalby",
   "license": "MIT",
   "dependencies": {
-    "newman": "^5.1.0",
+    "newman": "^5.3.2",
     "newman-reporter-junitfull": "^1.1.1"
   }
 }
